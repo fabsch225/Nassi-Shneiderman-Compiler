@@ -41,14 +41,27 @@
 <textarea id="code-block" placeholder="Write your Javascript..." >
 if (x smaller than 200) {
     if (x % 5 == 0) {
-    print(yees)
+    print(yees);
     }
     else {
-    print(ups)
+    print(ups);
     }
 }
 else {
-    print(nothing to worry about)
+    print(nothing to worry about);
+}
+print(Halfway done);
+
+if (time == too late) {
+    syso(its too late)
+}
+else {
+    if (es gibt was zum Nachdenken) {
+    warum();
+    }
+    else {
+    dann ins bett();
+    }
 }
 </textarea><br>
 
@@ -84,7 +97,7 @@ else {
         var code = document.getElementById('code-block').value;
         var svgContainer = document.getElementById('canvas');
 
-        var svg = convert(10, 10, 600, 50, lex_front(code), "My First Diagram");
+        var svg = convert(10, 10, 800, 50, lex_front(code), "My First Diagram");
         svgContainer.innerHTML = "";
         svgContainer.innerHTML += svg;
     }
