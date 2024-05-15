@@ -29,7 +29,7 @@ function get_arguments(s, i) {
         throw new Error('Expected (')
     }
     let arguments = ''
-    let next_char = '' 
+    let next_char = s[i + 1]
     i += 1
     while (next_char !== brackets[1]) {
         arguments += s[i]
@@ -59,7 +59,9 @@ function get_branch(s, i) {
 }
 
 function lex_front(s) {
-    return lex_back(s.replace(/\s/g, ''));
+    let without_spaces = s.replace(/\s/g, '')  
+    let without_spaces_and_semicolons = without_spaces.replace(/;/g, '')
+    return lex_back(without_spaces_and_semicolons)
 }
 
 function lex_back(s) {
@@ -102,37 +104,20 @@ function lex_back(s) {
                         throw new Error('Expected {')
                     }
                     i += 1
-                    var branch = ''
-                    var next_char = ''
-                    while (next_char !== branchers[1]) {
-                        if (i > s.length) {
-                            throw new Error('Expected }')
-                        }
-                        branch += s[i]
-                        i++
-                        next_char = s[i]
-                    }
-                    i += 1
-
-                    branches.push(lex_back(branch))
+                    var branch = get_branch(s, i)
+                    i = branch.index
+                    
+                    branches.push(lex_back(branch.content))
                     arguments.push(current_arguments.args)
                 }
                 if (s.substring(i, i + 4) === 'else') {
                     type = 2
                     i += 4
                     i += 1
-                    var branch = ''
-                    var next_char = ''
-                    while (next_char !== branchers[1]) {
-                        if (i > s.length) {
-                            throw new Error('Expected }')
-                        }
-                        branch += s[i]
-                        i++
-                        next_char = s[i]
-                    }
-                    i += 1
-                    branches.push(lex_back(branch))
+                    var branch = get_branch(s, i)
+                    i = branch.index
+                    
+                    branches.push(lex_back(branch.content))
                 }
 
                 tokens.push({
