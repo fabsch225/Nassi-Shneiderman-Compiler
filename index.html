@@ -11,12 +11,12 @@
     svg {
         border: 1px solid black;
         margin: 20px auto;
-        width: 500px;
-        height: 500px;
+        width: 100%;
+        height: 600px;
     }
     #code-block {
-        width: 100%;
-        height: 200px;
+        width: 400px;
+        height: 450px;
         border: 1px solid #ccc;
         margin-bottom: 10px;
     }
@@ -38,9 +38,22 @@
 <h1>Nassi-Shneiderman Diagram Reverse Engineering Compiler</h1>
 <div id="container">
 <div>
-<textarea id="code-block" placeholder="Write your Javascript..."></textarea><br>
-<button id="code-button" onclick="draw()">Draw Diagram</button>
+<textarea id="code-block" placeholder="Write your Javascript..." >
+if (x smaller than 200) {
+    if (x % 5 == 0) {
+    print(yees)
+    }
+    else {
+    print(ups)
+    }
+}
+else {
+    print(nothing to worry about)
+}
+</textarea><br>
+
 </div>
+<button id="code-button" onclick="draw()">Draw Diagram</button>
 <svg id="canvas" ></svg>
 </div>
 <script>
@@ -71,7 +84,7 @@
         var code = document.getElementById('code-block').value;
         var svgContainer = document.getElementById('canvas');
 
-        var svg = convert(10, 10, 300, 50, lex_front(code));
+        var svg = convert(10, 10, 600, 50, lex_front(code), "My First Diagram");
         svgContainer.innerHTML = "";
         svgContainer.innerHTML += svg;
     }

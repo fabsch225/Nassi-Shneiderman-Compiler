@@ -1,8 +1,18 @@
-function convert(x, y, width, height, tree) {
+function convert(x, y, width, height, tree, name) {
+    let svg = ''
+    svg += createStartEndBlock(x, y, width, 20, name).svgAppendix
+    let conversion = convert_backend(x, y + 20, width, height - 20, tree)
+    svg += conversion.svgAppendix
+    svg += createStartEndBlock(x, y + 20 + conversion.height, width, 20, "End").svgAppendix
+    return svg
+}
+
+function convert_backend(x, y, width, height, tree) {
     console.log("Converting ", tree)
     let svgAppendix = ''
     //let h = height / tree.length
     let current_y = y
+    
     for (let block of tree) {
         let h = getHeight(block)
         if (block.type == 0) { // sequential statement - function call
@@ -16,7 +26,7 @@ function convert(x, y, width, height, tree) {
             var sub_block = createDecisionBlock(x, current_y, width, h, block.name + '(' + block.arguments[0] + ')', "TRUE", "FALSE");
             svgAppendix += sub_block.svgAppendix;
             var bounds1 = sub_block.children[0];
-            svgAppendix += convert(bounds1.start_x, bounds1.start_y, bounds1.width, bounds1.height, block.branches[0]);
+            svgAppendix += convert_backend(bounds1.start_x, bounds1.start_y, bounds1.width, bounds1.height, block.branches[0]).svgAppendix;
             current_y += h
         }
         else if (block.type == 2) { //ifs and else
@@ -27,12 +37,12 @@ function convert(x, y, width, height, tree) {
             svgAppendix += sub_block.svgAppendix;
             var bounds1 = sub_block.children[0];
             var bounds2 = sub_block.children[1];
-            svgAppendix += convert(bounds1.start_x, bounds1.start_y, bounds1.width, bounds1.height, block.branches[0]);
-            svgAppendix += convert(bounds2.start_x, bounds2.start_y, bounds2.width, bounds2.height, block.branches[1]);
+            svgAppendix += convert_backend(bounds1.start_x, bounds1.start_y, bounds1.width, bounds1.height, block.branches[0]).svgAppendix;
+            svgAppendix += convert_backend(bounds2.start_x, bounds2.start_y, bounds2.width, bounds2.height, block.branches[1]).svgAppendix;
             current_y += h
         }
     }
-    return svgAppendix
+    return {svgAppendix: svgAppendix, height: current_y - y}
 }
 
 function getHeight(block) {
