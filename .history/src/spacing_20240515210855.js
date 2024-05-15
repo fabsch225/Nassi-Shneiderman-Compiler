@@ -1,0 +1,3 @@
+class child_space {
+
+}

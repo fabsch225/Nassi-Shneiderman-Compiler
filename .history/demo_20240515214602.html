@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nassi-Shneiderman Diagram Sequence</title>
+<script src="src/nassi_svg_api.js"></script>
+<style>
+    svg {
+        border: 1px solid black;
+        margin: 20px auto;
+        width: 500px;
+        height: 1000px;
+    }
+</style>
+</head>
+<body>
+<h1>Nassi-Shneiderman Diagram Sequence</h1>
+<svg id="canvas" ></svg>
+<script>
+    var svgContainer = document.getElementById('canvas');
+    svgContainer.innerHTML += createSequenceBlock(10, 10, 300, 50, "Hallo Hallo").svgAppendix;
+    var block = createDecisionBlock(10, 60, 300, 50, "Was ist Schwerer", "1 Kg Federn", "1 Kg Gold");
+    svgContainer.innerHTML += .svgAppendix;
+</script>
+</body>
+</html>

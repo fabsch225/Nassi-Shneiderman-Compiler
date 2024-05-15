@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVG Drawer</title>
+<style>
+    svg {
+        border: 1px solid black;
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+<h1>SVG Drawer</h1>
+<input type="text" id="svgInput" placeholder="Enter SVG String">
+<button onclick="drawSVG()">Draw SVG</button>
+<svg id="svgContainer"></svg>
+
+<script>
+    function drawSVG() {
+        var svgInput = document.getElementById('svgInput').value;
+        var svgContainer = document.getElementById('svgContainer');
+
+        if (svgInput.trim() === "") {
+            alert("Please enter a valid SVG file path.");
+            return;
+        }
+
+        svgContainer.innerHTML = svgInput;
+    }
+</script>
+</body>
+</html>
