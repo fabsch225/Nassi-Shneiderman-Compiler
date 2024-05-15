@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nassi-Shneiderman Diagram Sequence</title>
+<script src="src/nassi_svg_api.js"></script>
+<style>
+    svg {
+        border: 1px solid black;
+        margin: 20px auto;
+        width: 500px;
+        height: 1000px;
+    }
+</style>
+</head>
+<body>
+<h1>Nassi-Shneiderman Diagram Sequence</h1>
+<svg id="canvas" ></svg>
+<script>
+    
+    var svgContainer = document.getElementById('canvas');
+    const blockWidth = 200;
+    const blockHeight = 100;
+    const gap = 50;
+    let currentY = 10;
+
+    
+    svgContainer.innerHTML += createSequenceBlock(10, currentY, blockWidth, blockHeight * 2, ['Case 1', 'Case 2', 'Case 3']).svgAppendix;
+
+</script>
+</body>
+</html>
