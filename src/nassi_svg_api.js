@@ -1,12 +1,8 @@
-function createStartEndBlock(x, y, width, height) {
+function createStartEndBlock(x, y, width, height, content) {
     var h = 20;
     var svgAppendix =  `<rect x="${x}" y="${y}" width="${width}" height="${h}" stroke="black" fill="lightblue" />
-        <text x="${x + width / 2}" y="${y + height / 2}" font-size="14px" fill="black" text-anchor="middle">Start</text>`;
-    svgAppendix +=  `<rect x="${x}" y="${y + height - h}" width="${width}" height="${h}" stroke="black" fill="lightblue" />
-        <text x="${x + width / 2}" y="${y + height / 2}" font-size="14px" fill="black" text-anchor="middle">End</text>`;
-    var child = {start_x: x, start_y: y + h, width: width, height: height - 2 * h};
-
-    return {svgAppendix: svgAppendix, children: [child]};
+        <text x="${x + width / 2}" y="${y + height / 2}" font-size="14px" fill="black" text-anchor="middle">${content}</text>`;
+    return {svgAppendix: svgAppendix, children: []};
 }
 
 function createSequenceBlock(x, y, width, height, content) {

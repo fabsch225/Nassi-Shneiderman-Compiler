@@ -39,6 +39,25 @@ function get_arguments(s, i) {
     return {args: arguments, index: i + 1}
 }
 
+function get_branch(s, i) {
+    var branch = ''
+    var open_brackets = 0
+    while (open_brackets >= 0) {
+        if (i > s.length) {
+            throw new Error('Expected }')
+        }
+        branch += s[i]
+        i++
+        if (s[i] === branchers[0]) {
+            open_brackets++
+        }
+        else if (s[i] === branchers[1]) {
+            open_brackets--
+        }
+    }
+    return {content: branch, index: i + 1}
+}
+
 function lex_front(s) {
     return lex_back(s.replace(/\s/g, ''));
 }
@@ -69,18 +88,10 @@ function lex_back(s) {
                     throw new Error('Expected {')
                 }
                 i += 1
-                var branch = ''
-                var next_char = ''
-                while (next_char !== branchers[1]) {
-                    if (i > s.length) {
-                        throw new Error('Expected }')
-                    }
-                    branch += s[i]
-                    i++
-                    next_char = s[i]
-                }
-                i += 1
-                branches.push(lex_back(branch))
+                var branch = get_branch(s, i)
+                i = branch.index
+                
+                branches.push(lex_back(branch.content))
                 arguments.push(current_arguments.args)
 
                 while (s.substring(i, i + 6) === 'elseif') {
