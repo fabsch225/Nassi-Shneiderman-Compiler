@@ -87,8 +87,8 @@ function getMaxChildCount(branch) {
         else {
             counts.push(getMaxChildCount(block.branches[0]))
         }
-        return Math.max(...counts)
     }
+    return Math.max(...counts)
 }
 
 function getHeight(block) {
