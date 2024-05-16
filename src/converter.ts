@@ -1,13 +1,16 @@
-function convert(x, y, width, height, tree, name) {
+import { createDecisionBlock, createSequenceBlock, createStartEndBlock } from "./nassi_svg_api"
+import { token } from "./types/token"
+
+export function convert(x : number, y : number, width : number, height : number, tree : token[], name : string) {
     let svg = ''
     svg += createStartEndBlock(x, y, width, 20, name).svgAppendix
     let conversion = convert_backend(x, y + 20, width, height - 20, tree)
     svg += conversion.svgAppendix
     svg += createStartEndBlock(x, y + 20 + conversion.height, width, 20, "End").svgAppendix
-    return svg
+    return {svgString: svg, height: conversion.height + 40}
 }
 
-function convert_backend(x, y, width, height, tree) {
+function convert_backend(x  : number, y : number, width : number, height : number, tree: token[]) {
     console.log("Converting ", tree)
     let svgAppendix = ''
     //let h = height / tree.length
@@ -45,13 +48,13 @@ function convert_backend(x, y, width, height, tree) {
     return {svgAppendix: svgAppendix, height: current_y - y}
 }
 
-function getHeight(block) {
+export function getHeight(block : token) {
     const base_h = 20;
     if (block.type == 0) {
         return base_h
     }
     else {
-        var heights = []
+        let heights : number[] = []
         console.log(block)
         for (let branch of block.branches) {
             let current_heigth = 0

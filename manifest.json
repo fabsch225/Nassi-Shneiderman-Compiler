@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "nsd-js",
+	"name": "Nassi-Shneiderman Diagram Compiler",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "generate Nassi-Shneiderman Diagrams from JavaScript codeblocks",
+	"author": "fabsch225",
+	"authorUrl": "github.com/fabsch225",
+	"fundingUrl": "github.com/fabsch225",
 	"isDesktopOnly": false
 }
