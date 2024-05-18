@@ -3,7 +3,7 @@
 	"name": "Nassi-Shneiderman Diagram Compiler",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "generate Nassi-Shneiderman Diagrams from JavaScript codeblocks",
+	"description": "generate Nassi-Shneiderman Diagrams from JavaScript codeblocks. mark Nassi-Shneiderman-DIagram-Javascript with 'nsd_js' in a codeblock",
 	"author": "fabsch225",
 	"authorUrl": "github.com/fabsch225",
 	"fundingUrl": "github.com/fabsch225",
